@@ -33,23 +33,23 @@ bool BST::remove(int x) {
 	BSTNode* q = 0;
 
 	while (p) {
-		q = p;
 		if (p->data == x) break;	//found node
-		else if (p->data > x) p = p->leftchild;
+		q = p;
+		if (p->data > x) p = p->leftchild;
 		else p = p->rightchild;
 	}
 	if (!p) return false;	//there's no x
 
 	if (!(p->leftchild) && !(p->rightchild)) {	//leaf node
-		if (q->data > x) q->leftchild = 0;
-		else q->rightchild = 0;
+		if (q->data > x) { q->leftchild = 0; }
+		else { q->rightchild = 0; }
 	}
 	else if (p->leftchild && p->rightchild) {	//two childs
 		BSTNode* t = p;
 		p = p->leftchild;
 		while (1) {
-			q = p;
 			if (!p->rightchild) break;
+			q = p;
 			p = p->rightchild;
 		}
 		t->data = p->data;	//change node
